@@ -11,6 +11,7 @@ def write_csv(speed):
 def speed_test():
 	driver = webdriver.Firefox()
 	driver.get("https://www.fast.com")
+	# minutes in a day
 	minutes = 24 * 60
 	while minutes != 0:
 		time.sleep(60)
