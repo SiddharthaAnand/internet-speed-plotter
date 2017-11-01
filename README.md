@@ -4,7 +4,8 @@ writes in a csv file. The code uses selenium webdriver for firefox and in an int
 keeps checking the speed of your internet connection.
 
 ## Dependencies
-* [selenium](http://selenium-python.readthedocs.io/)
+* [selenium==3.4.2](http://selenium-python.readthedocs.io/)
+
 The steps to install and usage are provided in the link.
 
 ## How to clone the repository
