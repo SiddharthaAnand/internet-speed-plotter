@@ -17,7 +17,7 @@ def speed_test():
 		minutes -= 1
 		try:
 			elem_value = driver.find_element_by_id("speed-value")
-			speed_value = elem.text.encode('utf-8')
+			speed_value = elem_value.text.encode('utf-8')
 			elem_unit = driver.find_element_by_id("speed-units")
 			speed_unit = elem_unit.text.encode('utf-8')
 			elem_refresh = driver.find_element_by_id("speed-progress-indicator")
