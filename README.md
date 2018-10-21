@@ -29,4 +29,3 @@ The vaules denote the speed, unit and time of the day respectively.
 
 ## Improvements
 * Show real-time values as a plot
-* Detect network disconnection and stop

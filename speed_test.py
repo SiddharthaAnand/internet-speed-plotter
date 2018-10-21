@@ -1,20 +1,34 @@
 from selenium import webdriver
 import time
 import csv
+import urllib
+import sys
+
+def is_connected():
+	try :
+		url = "https://www.google.com"
+		urllib.urlopen(url)
+		return True
+	except :
+		status = "Not connect"
+	print status
+	return False
 
 def write_csv(speed):
 	with open('speed.csv', "a+") as csv_file:
 		writer = csv.writer(csv_file)
 		writer.writerow(speed)
 
- 
 def speed_test():
-	driver = webdriver.Firefox()
+	driver = webdriver.Firefox(executable_path='./geckodriver')
 	driver.get("https://www.fast.com")
 	# minutes in a day
 	minutes = 24 * 60
 	while minutes != 0:
 		time.sleep(60)
+		is_online = is_connected()
+		if not is_online:
+			sys.exit()
 		minutes -= 1
 		try:
 			elem_value = driver.find_element_by_id("speed-value")
