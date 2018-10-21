@@ -1,13 +1,15 @@
 from fastcli import fastcli
 import csv
 import datetime as dt
+import time
 import requests
 
 def connected():
-	r = requests.get('https://fast.com')
-	if r.status_code == 200:
-		return True
-	else:
+	try:
+		r = requests.get('https://fast.com')
+		if r.status_code == 200:
+			return True
+	except:
 		return False
 
 def write_csv(speed):
@@ -20,5 +22,10 @@ def speed_test():
 	print('{:.2f}'.format(data), ' mbps')
 	write_csv([dt.datetime.now(),data])
 
-while connected():
-	speed_test()
+while True:
+
+	if  connected():
+		speed_test()
+	else:
+		print('you cannot connect to fast.com retrying in 5 seconds')
+		time.sleep(5)
