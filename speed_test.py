@@ -20,7 +20,7 @@ def write_csv(speed):
 		writer.writerow(speed)
 
 def speed_test():
-	driver = webdriver.Firefox()
+	driver = webdriver.Firefox() # executable_path="./geckodriver"
 	driver.get("https://www.fast.com")
 	# minutes in a day
 	minutes = 24 * 60
