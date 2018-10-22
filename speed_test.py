@@ -1,34 +1,31 @@
-from selenium import webdriver
-import time
+from fastcli import fastcli
 import csv
+import datetime as dt
+import time
+import requests
+
+def connected():
+	try:
+		r = requests.get('https://fast.com')
+		if r.status_code == 200:
+			return True
+	except:
+		return False
 
 def write_csv(speed):
 	with open('speed.csv', "a+") as csv_file:
 		writer = csv.writer(csv_file)
 		writer.writerow(speed)
 
- 
 def speed_test():
-	driver = webdriver.Firefox()
-	driver.get("https://www.fast.com")
-	# minutes in a day
-	minutes = 24 * 60
-	while minutes != 0:
-		time.sleep(60)
-		minutes -= 1
-		try:
-			elem_value = driver.find_element_by_id("speed-value")
-			speed_value = elem_value.text.encode('utf-8')
-			elem_unit = driver.find_element_by_id("speed-units")
-			speed_unit = elem_unit.text.encode('utf-8')
-			elem_refresh = driver.find_element_by_id("speed-progress-indicator")
-			elem_refresh.click()
-			print "Speed now....", speed_value, speed_unit
-			# Write the value in csv
-			write_csv([speed_value, speed_unit, time.asctime()])
-		except Exception as e:
-			print "Exception encountered: ", e
-			time.sleep(5)
-			continue
+	data = fastcli.main()
+	print('{:.2f}'.format(data), ' mbps')
+	write_csv([dt.datetime.now(),data])
 
-speed_test()
+while True:
+
+	if  connected():
+		speed_test()
+	else:
+		print('you cannot connect to fast.com retrying in 5 seconds')
+		time.sleep(5)
