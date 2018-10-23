@@ -5,6 +5,7 @@ keeps checking the speed of your internet connection.
 
 ## Dependencies
 * [selenium==3.4.2](http://selenium-python.readthedocs.io/)
+* [requests==2.20.0](http://docs.python-requests.org/en/master/)
 
 The steps to install and usage are provided in the link.
 
