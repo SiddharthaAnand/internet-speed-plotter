@@ -20,29 +20,29 @@ def write_csv(speed):
 		writer.writerow(speed)
 
 def speed_test():
-	driver = webdriver.Firefox()
+	driver = webdriver.Firefox() # executable_path="./geckodriver"
 	driver.get("https://www.fast.com")
 	# minutes in a day
 	minutes = 24 * 60
 	while minutes != 0:
 		time.sleep(60)
 		is_online = is_connected()
-		if not is_online:
-			sys.exit()
-		minutes -= 1
-		try:
-			elem_value = driver.find_element_by_id("speed-value")
-			speed_value = elem_value.text.encode('utf-8')
-			elem_unit = driver.find_element_by_id("speed-units")
-			speed_unit = elem_unit.text.encode('utf-8')
-			elem_refresh = driver.find_element_by_id("speed-progress-indicator")
-			elem_refresh.click()
-			print "Speed now....", speed_value, speed_unit
-			# Write the value in csv
-			write_csv([speed_value, speed_unit, time.asctime()])
-		except Exception as e:
-			print "Exception encountered: ", e
-			time.sleep(5)
-			continue
+		if is_online:
+			minutes -= 1
+			try:
+				elem_value = driver.find_element_by_id("speed-value")
+				speed_value = elem_value.text.encode('utf-8')
+				elem_unit = driver.find_element_by_id("speed-units")
+				speed_unit = elem_unit.text.encode('utf-8')
+				elem_refresh = driver.find_element_by_id("speed-progress-indicator")
+				elem_refresh.click()
+				print "Speed now....", speed_value, speed_unit
+				# Write the value in csv
+				write_csv([speed_value, speed_unit, time.asctime()])
+			except Exception as e:
+				print "Exception encountered: ", e
+				time.sleep(5)
+				continue
+		print "Waiting for conection"
 
 speed_test()
