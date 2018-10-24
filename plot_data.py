@@ -25,7 +25,10 @@ def animate(i):
     xs = xs[-(count):]
     ys = ys[-(count):]
     ax1.clear()
-    ax1.plot(xs, ys)
+    plt.xlabel('timecount')
+    plt.ylabel('speed')
+    ax1.plot(ys, xs)
+	
 
 ani = animation.FuncAnimation(fig, animate, interval=1000)
 plt.show()
