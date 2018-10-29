@@ -31,7 +31,7 @@ The vaules denote the speed, unit and time of the day respectively.
 Real-time values graph as a plot
 Change frequency every second
 ```
->>> python plot.py
+>>> python plot_data.py
 ```
 
 ## Improvements
