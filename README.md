@@ -27,6 +27,11 @@ The data stored in the speed.csv file consists of three columns.
 ```
 The vaules denote the speed, unit and time of the day respectively.
 
+## plot
+Real-time values graph as a plot, change frequency : every second
+```
+>>> python plot_data.py
+```
+
 ## Improvements
-* Show real-time values as a plot
 * Detect network disconnection and stop
